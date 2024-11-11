@@ -1,0 +1,107 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>Signup</title>
+{% endblock %}
+
+{% block style_head %}
+    <style>
+        p {
+            margin: 0;
+        }
+
+        .bar.row {
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 0;
+        }
+
+        label {
+            user-select: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h3 class="m-0">Sign Up</h3>
+    <section class="m-0">
+        <div class="col">
+            <div class="bar row m-0 mt-3 mb-3">
+                <p class="m-0 p-0" style="color: red">Sorry, this email address already registered!</p>
+            </div>
+            <div class="bar row">
+                <div class="col-2">
+                    <label for="login-input">Login</label>
+                </div>
+                <div class="col">
+                    <input id="login-input" class="w-100" type="text" style="flex-grow: 1;"
+                           placeholder="Enter your login">
+                </div>
+            </div>
+
+            <div class="bar row">
+                <div class="col-2">
+                    <label for="email-input">Email</label>
+                </div>
+                <div class="col">
+                    <input id="email-input" class="w-100" type="text" style="flex-grow: 1;"
+                           placeholder="Enter your email">
+                </div>
+            </div>
+
+            <div class="bar row">
+                <div class="col-2">
+                    <label for="nickname-input">Nickname</label>
+                </div>
+                <div class="col">
+                    <input id="nickname-input" class="w-100" type="text" style="flex-grow: 1;"
+                           placeholder="Enter your nickname">
+                </div>
+            </div>
+
+            <div class="bar row">
+                <div class="col-2">
+                    <label for="password-input">Password</label>
+                </div>
+                <div class="col">
+                    <input id="password-input" class="w-100" type="password" style="flex-grow: 1;"
+                           placeholder="Enter your password">
+                </div>
+            </div>
+
+            <div class="bar row">
+                <div class="col-2">
+                    <label for="repeat-password-input">Repeat password</label>
+                </div>
+                <div class="col">
+                    <input id="repeat-password-input" class="w-100" type="password" style="flex-grow: 1;"
+                           placeholder="Enter your password">
+                </div>
+            </div>
+
+            <div class="bar row">
+                <div class="col-2">
+                    <label for="upload-avatar-input">Upload Avatar</label>
+                </div>
+                <div class="col align-items-center">
+                    <input id="upload-avatar-input" type="file" style="flex-grow: 1;"
+                           placeholder="Enter path to avatar">
+                </div>
+            </div>
+
+            <div class="bar row mt-2">
+                <div class="col-2">
+                    <p></p>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-dark" type="submit">Register!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>Tag</title>
+{% endblock %}
+
+{% block style_head %}
+    <style>
+        .page-link {
+            color: black;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex gap-3 align-items-center">
+{#        <h1 class="m-0">Tag: bender</h1>#}
+        <h1 class="m-0">Tag: {{ tag }}</h1>
+    </div>
+
+    <section class="p-0 m-0">
+        {% for tag_question in tag_questions %}
+            {% include 'layouts/question_card.html' with question=tag_question%}
+        {% endfor %}
+    </section>
+
+    {% include 'layouts/pagination.html' %}
+{% endblock %}

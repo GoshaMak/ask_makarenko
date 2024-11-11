@@ -1,0 +1,64 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock %}
+
+{% block style_head %}
+    <style>
+        label {
+            user-select: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="col-9">
+        <h3 class="m-0">Log In</h3>
+        <section class="m-0">
+            <div class="col">
+                <div class="bar row m-0 mt-3 mb-3">
+                    <p class="m-0 p-0" style="color: red">Sorry, wrong password!</p>
+                </div>
+
+                <div class="bar row mb-2">
+                    <div class="col-2">
+                        <label for="login-input">Login</label>
+                    </div>
+                    <div class="col">
+                        <input id="login-input" class="w-100" type="text" style="flex-grow: 1;"
+                               placeholder="Enter your login">
+                    </div>
+                </div>
+
+                <div class="bar row mb-2">
+                    <div class="col-2">
+                        <label for="password-input">Password</label>
+                    </div>
+                    <div class="col">
+                        <input id="password-input" class="w-100" type="password" style="flex-grow: 1;"
+                               placeholder="Enter your password">
+                    </div>
+                </div>
+
+                <div class="bar row mt-2">
+                    <div class="col-2">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-outline-dark" style="background: grey" type="submit">Log in!</button>
+                    </div>
+                </div>
+
+                <div class="bar row mt-2">
+                    <div class="col-2">
+                    </div>
+                    <div class="col">
+                        <a href="{% url 'signup' %}">create new account</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

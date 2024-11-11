@@ -1,0 +1,76 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>Ask</title>
+{% endblock %}
+
+{% block style_head %}
+    <style>
+        .bar > div {
+            margin: 0;
+            margin-top: 3px;
+            padding: 0;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        label {
+            user-select: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h3>New Question</h3>
+
+    <div class="bar row m-0 mt-3 mb-3">
+        <p class="m-0 p-0" style="color: red">Sorry, wrong Tags!</p>
+    </div>
+
+    <section class="m-0 ms-3">
+        <div class="col">
+            <div class="bar row">
+                <div class="col-2">
+                    <label for="title-input">Title</label>
+                </div>
+                <div class="col">
+                    <input class="w-100" type="text" id="title-input" style="flex-grow: 1;"
+                           placeholder="Enter Title">
+                </div>
+            </div>
+
+            <div class="bar row">
+                <div class="col-2">
+                    <label for="text-input">Text</label>
+                </div>
+                <div class="col">
+                            <textarea id="text-input" class="w-100" placeholder="Enter Text"
+                                      style="height: 200px; resize: none"></textarea>
+                </div>
+            </div>
+
+            <div class="bar row">
+                <div class="col-2">
+                    <label for="tags-input">Tags</label>
+                </div>
+                <div class="col">
+                    <input class="w-100" type="text" id="tags-input" style="flex-grow: 1;"
+                           placeholder="Enter Tags">
+                </div>
+            </div>
+
+            <div class="bar row mt-2">
+                <div class="col-2">
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-dark" style="background: grey" type="submit">ASK</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

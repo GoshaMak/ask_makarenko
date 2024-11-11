@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>Hot</title>
+{% endblock %}
+
+{% block style_head %}
+    <style>
+        .page-link {
+            color: black;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex gap-3 align-items-center">
+        <h1 class="m-0">Hot Questions</h1>
+        <a href="{% url 'index' %}">New Questions</a>
+    </div>
+
+    <section class="p-0 m-0">
+        {% for question in questions %}
+            {% include 'layouts/question_card.html' %}
+        {% endfor %}
+    </section>
+
+    {% include 'layouts/pagination.html' %}
+{% endblock %}

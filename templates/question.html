@@ -1,0 +1,55 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>Question</title>
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex flex-column gap-3">
+        <div class="card w-100" style="width: 18rem;">
+            <div class="card-body" style="height: auto">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="border" style="height: 100px; overflow: hidden">
+                            <img src="{% static "img/avatar.jpg" %}" alt="Ask-Avatar"
+                                 style="width: 100%; height: 100%; object-fit: cover"
+                                 class="img-fluid">
+                        </div>
+                        <input class="form-control" type="number" value="0" placeholder="Default input"
+                               aria-label="default input example">
+                    </div>
+
+                    <div class="col d-flex flex-column justify-content-between">
+                        <div class="align-top m-0">
+                            <h5 class="card-title m-0">{{ question.title }}</h5>
+                        </div>
+                        <div class="align-top m-0">
+                            <p class="card-text m-0">{{ question.text }}</p>
+                        </div>
+                        <div class="align-bottom">
+                            Tags:
+                            <a href="{% url 'tag' 'bender' %}" class="card-link m-0">bender</a>
+                            <a href="{% url 'tag' 'black-jack' %}" class="card-link m-0">black-jack</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="p-0 m-0">
+            {% for respond in responds %}
+                {% include 'layouts/respond_card.html' %}
+            {% endfor %}
+        </section>
+
+        <form class="mb-3">
+            <label class="w-100 mb-1">
+                <textarea class="w-100" placeholder="Enter your answer here"
+                          style="resize: none;"></textarea>
+            </label>
+            <button class="btn btn-outline-dark" style="background: grey" type="submit">Answer</button>
+        </form>
+    </div>
+{% endblock %}
