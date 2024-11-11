@@ -22,9 +22,9 @@
 
     <section class="p-0 m-0">
         {% for tag_question in tag_questions %}
-            {% include 'layouts/question_card.html' with question=tag_question%}
+            {% include 'components/question_card.html' with question=tag_question%}
         {% endfor %}
     </section>
 
-    {% include 'layouts/pagination.html' %}
+    {% include 'components/pagination.html' %}
 {% endblock %}

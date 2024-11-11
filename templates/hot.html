@@ -22,9 +22,9 @@
 
     <section class="p-0 m-0">
         {% for question in questions %}
-            {% include 'layouts/question_card.html' %}
+            {% include 'components/question_card.html' %}
         {% endfor %}
     </section>
 
-    {% include 'layouts/pagination.html' %}
+    {% include 'components/pagination.html' %}
 {% endblock %}

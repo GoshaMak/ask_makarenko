@@ -22,9 +22,10 @@ from app import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('hot/', views.hot, name='hot'),
-    path('question/<int:question_id>', views.question, name='question'),
+    path('question/<str:question_id>', views.question, name='question'),
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
+    path('settings/', views.settings, name='settings'),
     path('ask/', views.ask, name='ask'),
     path('tag/<str:main_tag>', views.tag, name='tag'),
     path('admin/', admin.site.urls),

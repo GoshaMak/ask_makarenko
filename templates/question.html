@@ -40,7 +40,7 @@
 
         <section class="p-0 m-0">
             {% for respond in responds %}
-                {% include 'layouts/respond_card.html' %}
+                {% include 'components/respond_card.html' %}
             {% endfor %}
         </section>
 
@@ -52,4 +52,6 @@
             <button class="btn btn-outline-dark" style="background: grey" type="submit">Answer</button>
         </form>
     </div>
+
+{#    {% include 'layouts/pagination.html' %}#}
 {% endblock %}
