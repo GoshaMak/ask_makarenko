@@ -30,8 +30,11 @@
                         </div>
                         <div class="align-bottom">
                             Tags:
-                            <a href="{% url 'tag' 'bender' %}" class="card-link m-0">bender</a>
-                            <a href="{% url 'tag' 'black-jack' %}" class="card-link m-0">black-jack</a>
+                            {% for tag in tags %}
+                                <a href="{% url 'tag' tag.name %}" class="card-link m-0">{{ tag.name }}</a>
+                            {% endfor %}
+{#                            <a href="{% url 'tag' 'bender' %}" class="card-link m-0">bender</a>#}
+{#                            <a href="{% url 'tag' 'black-jack' %}" class="card-link m-0">black-jack</a>#}
                         </div>
                     </div>
                 </div>
@@ -53,5 +56,5 @@
         </form>
     </div>
 
-{#    {% include 'layouts/pagination.html' %}#}
+    {#    {% include 'layouts/pagination.html' %}#}
 {% endblock %}

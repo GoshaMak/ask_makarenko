@@ -1,16 +1,8 @@
-import copy
-from random import shuffle
-
 from django.core.paginator import Paginator
+from django.http import Http404
 from django.shortcuts import render
 
-QUESTIONS = [
-    {
-        'title': f'title {i}',
-        'id': i,
-        'text': f'text for question {i}',
-    } for i in range(30)
-]
+from app.models import Question, Answer, Tag, QuestionLike
 
 
 def paginate(objects_list, request, attr='page', per_page=4):
@@ -25,9 +17,20 @@ def paginate(objects_list, request, attr='page', per_page=4):
 
 
 def index(request):
-    page = paginate(QUESTIONS, request, attr='')
+    questions = []
+    for q in Question.objects.new():
+        questions.append(
+            {
+                'question': q,
+                'tags': q.tags.all(),
+                'answers_amt': len([ans for ans in Answer.objects.all() if ans.question.id == q.id]),
+            }
+        )
+    # questions = Question.objects.new()
+    # Tag.objects.add_tags(questions)
+    # Question.objects.add_answers_amt(questions, Answer.objects.all())
 
-    print(f"{page=}")
+    page = paginate(questions, request, attr='')
 
     return render(
         request,
@@ -40,10 +43,17 @@ def index(request):
 
 
 def hot(request):
-    hot_questions = copy.deepcopy(QUESTIONS)
-    shuffle(hot_questions)
+    questions = []
+    for q in Question.objects.best():
+        questions.append(
+            {
+                'question': q,
+                'tags': q.tags.all(),
+                'answers_amt': len([ans for ans in Answer.objects.all() if ans.question.id == q.id]),
+            }
+        )
 
-    page = paginate(hot_questions, request)
+    page = paginate(questions, request)
 
     return render(
         request,
@@ -56,20 +66,21 @@ def hot(request):
 
 
 def question(request, question_id):
-    if not str(question_id).isdigit():
-        question_id = QUESTIONS[0]['id']
-    if not question_id in [q['id'] for q in QUESTIONS]:
-        question_id = int(question_id)
+    try:
+        question_ = Question.objects.get(pk=question_id)
+    except Question.DoesNotExist:
+        raise Http404
 
-    question_ = QUESTIONS[question_id]
-    responds_ = QUESTIONS[0:2]  # question answers
+    answers = [ans for ans in list(Answer.objects.all()) if ans.question.id == question_id]
+    tags = question_.tags.all()
 
     return render(
         request,
         'question.html',
         context={
             'question': question_,
-            'responds': responds_,
+            'responds': answers,
+            'tags': tags,
         },
     )
 
@@ -103,8 +114,19 @@ def ask(request):
 
 
 def tag(request, main_tag):
-    tag_questions = copy.deepcopy(QUESTIONS)
-    shuffle(tag_questions)
+    tag_questions = []
+    # def questions_by_tag(main_tag)
+    for q in Question.objects.all():
+        for tag_ in q.tags.all():
+            if tag_.name == main_tag:
+                tag_questions.append(
+                    {
+                        'question': q,
+                        'tags': q.tags.all(),
+                        'answers_amt': len([ans for ans in Answer.objects.all() if ans.question.id == q.id])
+                    }
+                )
+                break
 
     return render(
         request,
@@ -112,5 +134,6 @@ def tag(request, main_tag):
         context={
             'tag': main_tag,
             'tag_questions': tag_questions,
+            'answers_amt': len([ans for ans in Answer.objects.all() if ans.question.id == q.id])
         },
     )

@@ -16,18 +16,19 @@
 
             <div class="col d-flex flex-column justify-content-between">
                 <div class="align-top m-0">
-                    <a href="{% url 'question' question.id %}" class="card-title m-0"
+                    <a href="{% url 'question' question.question.id %}" class="card-title m-0"
                        style="color: black;text-decoration: none;">
-                        <h5>{{ question.title }}</h5></a>
+                        <h5>{{ question.question.title }}</h5></a>
                 </div>
                 <div class="align-top m-0">
-                    <p class="card-text m-0">{{ question.text }}</p>
+                    <p class="card-text m-0">{{ question.question.text }}</p>
                 </div>
                 <div class="align-bottom">
-                    <a href="{% url 'question' question.id %}">answer(4)</a>
+                    <a href="{% url 'question' question.question.id %}">answer({{ question.answers_amt }})</a>
                     Tags:
-                    <a href="{% url 'tag' 'bender' %}" class="card-link m-0">bender</a>
-                    <a href="{% url 'tag' 'black-jack' %}" class="card-link m-0">black-jack</a>
+                    {% for tag in question.tags %}
+                        <a href="{% url 'tag' tag.name %}" class="card-link m-0">{{ tag.name }}</a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
